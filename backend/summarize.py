@@ -1,5 +1,5 @@
 import requests
-OLLAMA_URL = "http://ollama:11434/api/generate"
+OLLAMA_URL = "http://localhost:11434/api/generate"
 MODEL_NAME = "mistral"  # Change this to the desired model name [mistral, lamda2, etc.]
 
 # System prompt for summarization context
