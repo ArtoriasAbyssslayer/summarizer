@@ -73,15 +73,15 @@ npm start
 
 
 ### 3. Ollama (llm-backend)
-```bash 
-curl https://ollama.ai/install.sh | sh```
-```bash
+```
+curl https://ollama.ai/install.sh | sh
+```
+```
 ollama pull mistral
 ollama run mistral
 ```
 ## With Docker 
-```bash
-docker-compose up```
+```docker-compose up```
 
 
 
