@@ -1,0 +1,39 @@
+services:
+  frontend:
+    env_file: ./.env
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "${REACT_LOCAL_PORT}:${REACT_DOCKER_PORT}"
+    depends_on:
+      - backend
+    networks:
+      - chat-summarizer-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "${BACKEND_LOCAL_PORT}:${BACKEND_DOCKER_PORT}"
+    depends_on:
+      - ollama
+    environment:
+      - FLASK_APP=endpoints.py
+    volumes:
+      - ./backend:/backend
+    networks:
+      - chat-summarizer-network
+
+  ollama:
+    image: ollama/ollama:latest
+    environment:
+      - OLLAMA_HOST=0.0.0.0:11434
+    ports:
+      - "11500:11434"
+    networks:
+      - chat-summarizer-network
+
+networks:
+  chat-summarizer-network:
